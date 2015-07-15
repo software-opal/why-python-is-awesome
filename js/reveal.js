@@ -136,9 +136,9 @@
 			// Parallax background size
 			parallaxBackgroundSize: '', // CSS syntax, e.g. "3000px 2000px"
 
-			// Amount to move parallax background (horizontal and vertical) on slide change
-			parallaxBackgroundHorizontal: '', //  Number, e.g. 100
-			parallaxBackgroundVertical: '', // Number, e.g. 10
+			// Amount of pixels to move the parallax background per slide step
+			parallaxBackgroundHorizontal: null,
+			parallaxBackgroundVertical: null,
 
 			// Number of slides away from the current that are visible
 			viewDistance: 3,
@@ -2681,11 +2681,13 @@
 
 			var slideWidth = dom.background.offsetWidth,
 				horizontalSlideCount = horizontalSlides.length,
-				horizontalOffsetMultiplier, horizontalOffset;
+				horizontalOffsetMultiplier,
+				horizontalOffset;
 
-			if (typeof config.parallaxBackgroundHorizontal === 'number') {
+			if( typeof config.parallaxBackgroundHorizontal === 'number' ) {
 				horizontalOffsetMultiplier = config.parallaxBackgroundHorizontal;
-			} else {
+			}
+			else {
 				horizontalOffsetMultiplier = ( backgroundWidth - slideWidth ) / ( horizontalSlideCount-1 );
 			}
 
@@ -2693,17 +2695,19 @@
 
 			var slideHeight = dom.background.offsetHeight,
 				verticalSlideCount = verticalSlides.length,
-				verticalOffsetMultiplier, verticalOffset;
+				verticalOffsetMultiplier,
+				verticalOffset;
 
-			if (typeof config.parallaxBackgroundVertical === 'number') {
+			if( typeof config.parallaxBackgroundVertical === 'number' ) {
 				verticalOffsetMultiplier = config.parallaxBackgroundVertical;
-			} else {
+			}
+			else {
 				verticalOffsetMultiplier = ( backgroundHeight - slideHeight ) / ( verticalSlideCount-1 );
 			}
 
-			verticalOffset = verticalSlideCount > 0 ?  verticalOffsetMultiplier * indexv * -1 : 0;
+			verticalOffset = verticalSlideCount > 0 ?  verticalOffsetMultiplier * indexv * 1 : 0;
 
-			dom.background.style.backgroundPosition = horizontalOffset + 'px ' + verticalOffset + 'px';
+			dom.background.style.backgroundPosition = horizontalOffset + 'px ' + -verticalOffset + 'px';
 
 		}
 
