@@ -48,6 +48,16 @@
   <!-- Please put any custom styles here -->
   <style>
 
+  .side-by-side-code {
+    width: 100%;
+    display: table;
+    text-align: center;
+  }
+  .side-by-side-code pre {
+    display: table-cell;
+    max-width: 50%;
+    font-size: 0.4em
+  }
   </style>
 </head>
 
@@ -66,7 +76,11 @@
           Presented by <a href="#">Lee Symes</a>
         </p>
       </section>
-
+      <section>
+        <div class="content-warning">
+        The author wishes to advise that the following presentation may contain code that is badly formatted, missing comments or just plain wrong. Sorry.
+        </div>
+      </section>
       <section>
         <section class="title-slide">
           <h2 class="orange">About Me</h2>
@@ -96,7 +110,7 @@
           Should I use <code>{}</code> or not?<br />
           Is it <code>"</code>, <code>'</code> or are both allowed?<br />
           Do I use a <code>.</code> or is it PHP so I need to use one of <code>-&gt;</code> and <code>::</code> instead<br />
-          Or is it perl so I use a random selection of <code>%&amp;$@</code> until it stops erroring.
+          Or is it perl so I use a random selection of <code>%&amp;$@{}</code> until it stops erroring.
         </section>
         <section>
           <h3>Space</h3>
@@ -114,7 +128,7 @@
           <h3>Naming conventions cont.</h3>
           Should I <code>push</code> to a list, or <code>append</code> to a set; or is it the other way around. What if I don't know what type of object it is? <br />
           Is it <code>do ... while true</code> or <code>while true ...</code> or <code>while true do ...</code><br />
-          Should I use <code>for</code>, <code>foreach</code> or the dredded <code>for (var i = 0; i < a.length; i++)</code> or the even worse <code>for (key in a) { if (a.hasOwnProperty(key)) {...}}</code>(thanks javascript).
+          Should I use <code>for</code>, <code>foreach</code> or the dredded <code>for (var i = 0; i &lt; a.length; i++)</code> or the even worse <code>for (key in a) { if (a.hasOwnProperty(key)) {...}}</code>(thanks javascript).
         </section>
         <section>
           <h3>At least python only has 1 import statement</h3>
@@ -128,7 +142,13 @@
         </section>
       </section>
       <section>
-        Asynchronous programming, and the various ways it can be written in code, with reference to JavaScript and Go.
+        <section class="title-slide">
+          <h2 class="blue">Asynchronus coding</h2>
+        </section>
+        <section>
+
+
+        </section>
       </section>
       <section>
         Packaging, how some languages do it better and worse than Python, and what Python can learn from them.
@@ -142,8 +162,37 @@
         </section>
         <section>
           <h3>Generators</h3>
+          Python generators make simple stuff simple and hard stuff quite simple too. Plus with the new <code>yield from</code> you can make generators that compose other generators without having to loop over them yourself. It's great.
+        </section>
+        <section>
+          <div class="side-by-side-code">
+            <pre><code lang="python" data-trim>
+def fib():
+  next, curr = 1, 1
+  while True:
+    yield curr
+    next, curr = curr + next, next
 
-
+## This prints a lot of numbers very quickly.
+for fib_num in fib():
+  print(fib_num)
+            </code></pre>
+            <pre><code lang="javascript" data-trim>
+function* fib(){
+  var next = 1, curr = 1, swap;
+  while(true) {
+    yield curr;
+    swap = next;
+    next = curr + next;
+    curr = swap;
+  }
+}
+// Also prints a lot of numbers very quickly.
+for(var fib_num of fib()) {
+  console.log(fib_num);
+}
+            </code></pre>
+          </div>
         </section>
         <section>
           <h3>Decorators</h3>
@@ -203,7 +252,7 @@ import sys
 
 class MyCoolClass():
 
-  if sys.version_info < (3, 0):
+  if sys.version_info &lt; (3, 0):
     def __unicode__(self):
       return "Some unicode representation"
 
@@ -213,41 +262,13 @@ class MyCoolClass():
         </section>
         <section>
           <h3>ABC - as easy as 123</h3>
-          Writing a fully featured dictionary is really easy ...
-          <pre><code lang="python" data-trim>
-import collections.abc
-
-class KeyDefaultDictionary(collections.abc.MutableMapping):
-
-  def __init__(self):
-    self.store = {}
-
-  def __getitem__(self, key):
-    if key not in self.store:
-      self.store[key] = key
-      return key
-    return self.store[key]
-
-  def __setitem__(self, key, value):
-    self.store[key] = value
-
-  def __delitem__(self, key, value):
-    del self.store[key]
-
-  def __iter__(self):
-    return iter(self.store)
-
-  def __len__(self):
-    return len(self.store)
-
-my_dict = DefaultDictionary()
-assert "create this" == my_dict["create this"]  ## Creates a entry -- key: key
-my_dict["hello"] = "world"
-my_dict[2] = 4
-print(list(my_dict.items()))
-## Prints
-## [("create this", "create this"), ("hello", "world"), (2, 4)]
-          </code></pre>
+          Writing a dictionary is really easy, implement 5 methods and everything else comes with it
+        </section>
+        <section>
+          <h3>__Dunders__</h3>
+          Python has first class custom comparisons ... <code>__gt__</code>, <code>__lt__</code>, <code>__ge__</code>, <code>__le__</code>, <code>__eq__</code>, and <code>__ne__</code>.<br />
+          AND first class custom operations ... <code>__add__</code>, <code>__sub__</code>, <code>__mul__</code>, <code>__truediv__</code>, <code>__floordiv__</code>, the list goes on.<br />
+          Doing that in Java is ... imposible.
         </section>
       </section>
     </div>
