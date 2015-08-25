@@ -505,6 +505,8 @@ body {
       background-color: #5B9AA9; }
     .reveal section.title-slide h2.green, .reveal section > section.title-slide h2.green {
       background-color: #889A3A; }
+    .reveal section.title-slide h2.mustard, .reveal section > section.title-slide h2.mustard {
+      background-color: #C6B253; }
   .reveal section.title-slide.banner-2, .reveal section > section.title-slide.banner-2 {
     background-image: url(images/slide-banner-2.jpg); }
   .reveal section.title-slide.banner-3, .reveal section > section.title-slide.banner-3 {
@@ -554,7 +556,7 @@ body {
  *********************************************/
 .footer {
   position: absolute;
-  bottom: 0;
+  bottom: 3px;
   height: 110px;
   width: 100%;
   z-index: 30;

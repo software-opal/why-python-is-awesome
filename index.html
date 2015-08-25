@@ -101,22 +101,23 @@
       </section>
       <section>
         <section class="title-slide banner-2">
-          <h2 class="green">Synax, Spelling, and Standards</h2>
+          <h2 class="green">Syntax, Spelling, and Standards</h2>
         </section>
         <section>
-          Which symbol do I use?<br />
-          Do I need to end a line with <code>;</code> Or not.<br />
-          Do my conditionals need brackets around them?<br />
-          Should I use <code>{}</code> or not?<br />
-          Is it <code>"</code>, <code>'</code> or are both allowed?<br />
-          Do I use a <code>.</code> or is it PHP so I need to use one of <code>-&gt;</code> and <code>::</code> instead<br />
-          Or is it perl so I use a random selection of <code>%&amp;$@{}</code> until it stops erroring.
+          <h3>Which symbol do I use?</h3>
+          <ul>
+            <li>Do I need to end a line with <code>;</code> Or not.</li>
+            <li>Do my conditionals need brackets around them?</li>
+            <li>Should I use <code>{}</code> or not?</li>
+            <li>Is it <code>"</code>, <code>'</code> or are both allowed?</li>
+            <li>Do I use a <code>.</code> or is it PHP so I need to use one of <code>-&gt;</code> and <code>::</code> instead</li>
+            <li>Or it is Perl so I use a random selection of <code>%&amp;$@{}</code> until it stops erroring.</li>
+          </ul>
         </section>
         <section>
           <h3>Space</h3>
-          Is it 2 spaces, 4 spaces or a tab.
-          Is it 1 line or 2 between functions
-          What about new lines inside functions, are they ok?
+          <div>How do I indent my code?</div>
+          <div>How should I space my code? 1 line or 2, blank lines inside functions.</div>
           I hate compact code; but I also like not having to scroll through 1000 lines of mostly blank space to find what I need.
         </section>
         <section>
@@ -128,7 +129,7 @@
           <h3>Naming conventions cont.</h3>
           Should I <code>push</code> to a list, or <code>append</code> to a set; or is it the other way around. What if I don't know what type of object it is? <br />
           Is it <code>do ... while true</code> or <code>while true ...</code> or <code>while true do ...</code><br />
-          Should I use <code>for</code>, <code>foreach</code> or the dredded <code>for (var i = 0; i &lt; a.length; i++)</code> or the even worse <code>for (key in a) { if (a.hasOwnProperty(key)) {...}}</code>(thanks javascript).
+          Should I use <code>for</code>, <code>foreach</code> or the dreaded <code>for (var i = 0; i &lt; a.length; i++)</code> or the even worse <code>for (key in a) { if (a.hasOwnProperty(key)) {...}}</code>(thanks javascript).
         </section>
         <section>
           <h3>At least python only has 1 import statement</h3>
@@ -138,26 +139,80 @@
           <h3>And does namespaces , well..., well</h3>
           Modules everywhere.<br />
           Unlike Javascript(except maybe NodeJS and some of the newer CommonJS/RequireJS/AMD/*Insert latest and greatest module library here*) where everything is on the window object unless you use <code>var</code> <b>AND</b> wrap your whole code in <code>(function() {/* CODE HERE */})()</code>
-          And PHP; everything is also on the same namespace unless you explicity use it.
+          And PHP; everything is also on the same namespace unless you explicitly use it.
         </section>
       </section>
       <section>
-        <section class="title-slide">
-          <h2 class="blue">Asynchronus coding</h2>
+        <section class="title-slide banner-3">
+          <h2 class="yellow">Asynchronous coding</h2>
         </section>
         <section>
-
-
+          <h3>Async?</h3>
+          Usually in programming you do one thing then the next then the next.<br />
+          But what if you <b>COULD</b> do multiple things at once? That would make your program faster; but harder to understand.
+        </section>
+        <section>
+          <h3>Threadding</h3>
+          <div>In most languages(Python's kinda an outlier with it's <abbr title="Global Interpreter Lock">GIL</abbr>) threads allow multiple lines of execution to run at once.</div>
+          <div>The problem is that you have to be careful. What if you many threads are trying to insert into an array?</div>
+        </section>
+        <section>
+          <h3>Multiple Processes</h3>
+          <div>Python's got multiprocessing. But sharing data becomes harder; and you have to manage sending/recieving data.</div>
+        </section>
+        <section>
+          <h3>Async - AsyncIO/Single Threaded Asynchronous</h3>
+          <div>It's a single thread in a single process so no locking/unlocking or sharing problems.</div>
+          <div>Plus the developer controls when the switches happen.</div>
+          <div>This only really is useful for IO bound operations - like a server, or a web crawler.</div>
         </section>
       </section>
       <section>
-        Packaging, how some languages do it better and worse than Python, and what Python can learn from them.
+        <section class="title-slide banner-4">
+          <h2 class="blue">Packaging</h2>
+        </section>
+        <section>
+          <h3>Python</h3>
+          <div><code>pip</code> tends to pollute your system with packages ... unless you use <code>venv</code> or <code>virtualenv</code>.</div>
+          <div>On the plus side ... there is native packaging which isn't <i>very</i> painful.</div>
+          <div>But ... I have never packaged anything in Python</div>
+        </section>
+        <section>
+          <h3>Java</h3>
+          <div>At least Python has pip. In Java there's Maven; but it's not easy to use. It's genuinely horrible.</div>
+        </section>
+        <section>
+          <h3>NodeJS</h3>
+          <div>Node Package Manager is possibly the best solution I have experienced</div>
+          <ol>
+            <li>Local first</li>
+            <li>Even personal projects create a packaging file</li>
+            <li>Deployment is easy.</li>
+          </ol>
+        </section>
+        <section>
+          <h3>What could Python do?</h3>
+          <div style="text-align: left">Make it easier to:
+            <ul>
+              <li>Create a <code>setup.py</code> ... say <code>pip init</code></li>
+              <li>Add packages whilst installing them ... say <code>pip install --save requests</code></li>
+              <li>Allow <code>setup.py</code> to be used to install packages</li>
+              <li>Introduce packaging earlier</li>
+            </ul>
+          </div>
+          <div style="text-align: left">Local first ... or get Debian/Ubuntu to include venv in the <code>python3</code> package.</div>
+        </section>
       </section>
       <section>
-        Unit testing in all languages is hard, but the syntactic sugar that is added can ease the pain, and make the output when your tests inevitably fail easier to read.
+        <section class="title-slide banner-5">
+          <h2 class="mustard">Unit Testing</h2>
+        </section>
+        <section>
+          Unit testing in all languages is hard, but the syntactic sugar that is added can ease the pain, and make the output when your tests inevitably fail easier to read.
+        </section>
       </section>
       <section>
-        <section class="title-slide">
+        <section class="title-slide banner-6">
           <h2 class="orange">Magic!</h2>
         </section>
         <section>
@@ -238,7 +293,7 @@ def exit_on_error():
     sys.exit(1)
 
 print("Hello, I'm going to divide by zero")
-with exit_on_error:
+with exit_on_error():
   one_over_zero = 1 / 0
   ## Python exits instead of printing a stack trace.
           </code></pre>
@@ -268,7 +323,7 @@ class MyCoolClass():
           <h3>__Dunders__</h3>
           Python has first class custom comparisons ... <code>__gt__</code>, <code>__lt__</code>, <code>__ge__</code>, <code>__le__</code>, <code>__eq__</code>, and <code>__ne__</code>.<br />
           AND first class custom operations ... <code>__add__</code>, <code>__sub__</code>, <code>__mul__</code>, <code>__truediv__</code>, <code>__floordiv__</code>, the list goes on.<br />
-          Doing that in Java is ... imposible.
+          Doing that in Java is ... impossible.
         </section>
       </section>
     </div>

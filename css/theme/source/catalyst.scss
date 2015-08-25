@@ -388,6 +388,7 @@ $selectionBackgroundColor: rgba(0, 0, 0, 0.99);
         &.yellow { background-color: $catYellow; }
         &.blue { background-color: $catBlue; }
         &.green { background-color: $catGreen; }
+        &.mustard { background-color: $catMustard; }
     }
 
     // set of banner images - use class on html to choose
@@ -455,7 +456,7 @@ $selectionBackgroundColor: rgba(0, 0, 0, 0.99);
  *********************************************/
 .footer {
     position: absolute;
-    bottom: 0;
+    bottom: 3px; // Make space for the progress bar.
     height: 110px;
     width: 100%;
     z-index: 30;
