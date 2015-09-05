@@ -55,16 +55,19 @@
     vertical-align: top;
     font-size: 55% !important;
   }
+  .side-by-side-code.2-blocks {
+    font-size: 90% !important;
+  }
   .side-by-side-code>*{
     display: inline-block;
   }
   .side-by-side-code pre {
     width: 99%;
   }
-  .side-by-side-code.3-blocks {
+  .side-by-side-code.3-blocks div {
     width: 33%;
   }
-  .side-by-side-code.2-blocks {
+  .side-by-side-code.2-blocks div {
     width: 50%;
   }
   .reveal .side-by-side-code div {
@@ -111,9 +114,17 @@
         </section>
         <section>
           <h2>Catalyst</h2>
-          <span>I was still living in Brisbane at the time; they offered me a job in Auckland. Which I leapt at ...</span>
-          <span>And now I'm here. Complaining about the Auckland rental market; and Java.</span>
+          <div>I was offered a job ... and leapt across the ditch.</div>
+          <div>I currently code in Python, Javascript, PHP and occasionally Perl</div>
         </section>
+      </section>
+      <section>
+        <h2>Overview</h2>
+        <div>Syntax, Spelling, and Standards</div>
+        <div>Asynchronous coding</div>
+        <div>Packaging</div>
+        <div>Unit Testing</div>
+        <div>Python's Magic</div>
       </section>
       <section>
         <section class="title-slide banner-2">
@@ -140,7 +151,7 @@
         </section>
         <section>
           <h3>Naming conventions</h3>
-          <div>Why does python have <code class="inline">startswith</code>, <code>getLogger</code> and <code lang="python">current_thread</code>?</div>
+          <div>Why does Python have <code class="inline">startswith</code>, <code>getLogger</code> and <code lang="python">current_thread</code>?</div>
           <div>Java's a little better - functions are <code lang="java">toString</code>; classes are <code lang="java">ArrayList</code> and constants are <code lang="java">MAX_VALUE</code>. Simple.</div>
         </section>
         <section>
@@ -156,7 +167,7 @@
         </section>
         <section>
           <h3>And does have namespaces</h3>
-          Javascript kinda doesn't. PHP kinda does.
+          NodeJS does. Javascript kinda doesn't. PHP kinda does.
         </section>
       </section>
       <section>
@@ -170,7 +181,8 @@
         </section>
         <section>
           <h3>Threading</h3>
-          <div>In most languages(Python's kinda an outlier with it's <abbr title="Global Interpreter Lock">GIL</abbr>) threads allow multiple lines of execution to run at once.</div>
+          <div>In most languages threading allows multiple threads of execution to run at once.</div>
+          <small>(Python's kinda an outlier with it's <abbr title="Global Interpreter Lock">GIL</abbr>)</small>
           <div>The problem is that you have to be careful. What if you many threads are trying to insert into an array?</div>
         </section>
         <section>
@@ -287,7 +299,7 @@ assertNull(null);
 self.assertEquals(100/2, 50)
 self.assertIsNot(object(), object())
 self.assertNotNone("Some String")
-self.assertNone(none)
+self.assertNone(None)
               </code></pre>
             </div>
             <div>
@@ -314,8 +326,8 @@ should(null).not.exist()
               <h4>Python</h4>
               <pre><code lang="python" data-trim>
 def test_length_of_5_letter_strings(self):
-  for string in ["Hello", "World", "PyCon"]:
-    with self.subTest("Testing %r" % (string, )):
+  for value in ["Hello", "World", "PyCon"]:
+    with self.subTest("Testing %r" % (value, )):
       self.assertEqual(len(string), 5)
               </code></pre>
             </div>
@@ -324,8 +336,8 @@ def test_length_of_5_letter_strings(self):
               <pre><code lang="java-script" data-trim>
 describe("modulo of even numbers", function() {
   itemsToTest = ["Hello", "World", "PyCon"]
-  itemsToTest.forEach(function(string) {
-    it('Testing "' + string + '"', function() {
+  itemsToTest.forEach(function(value) {
+    it('Testing "' + value + '"', function() {
       string.should.have.lengthOf(5)
     })
   })
@@ -350,8 +362,10 @@ describe("modulo of even numbers", function() {
           Python generators make simple stuff simple and hard stuff quite simple too. Plus with the new <code>yield from</code> you can make generators that compose other generators without having to loop over them yourself. It's great.
         </section>
         <section>
-          <div class="side-by-side-code">
-            <pre><code lang="python" data-trim>
+          <div class="side-by-side-code 2-blocks">
+            <div>
+              <h4>Python</h4>
+              <pre><code lang="python" data-trim>
 def fib():
   next, curr = 1, 1
   while True:
@@ -361,8 +375,11 @@ def fib():
 ## This prints a lot of numbers very quickly.
 for fib_num in fib():
   print(fib_num)
-            </code></pre>
-            <pre><code lang="javascript" data-trim>
+              </code></pre>
+            </div>
+            <div>
+              <h4>Javascript</h4>
+              <pre><code lang="javascript" data-trim>
 function* fib(){
   var next = 1, curr = 1, swap;
   while(true) {
@@ -376,13 +393,14 @@ function* fib(){
 for(var fib_num of fib()) {
   console.log(fib_num);
 }
-            </code></pre>
+              </code></pre>
+            </div>
           </div>
         </section>
         <section>
           <h3>Decorators</h3>
-          Really awesome to use ... such a pain to write. Much boiler plate; many need for multi-line lambdas.
-          They are really cool for removing boilerplate from lots of functions. Say checking that a user is logged in.
+          <div>Really awesome to use ... such a pain to write.</div>
+          <div>They are really cool for removing boilerplate from lots of functions.</div>
         </section>
         <section>
           <h3>Context Managers</h3>
@@ -459,9 +477,6 @@ class MyCoolClass():
       <section>
         <h3>Thank you</h3>
         <div>https://github.com/leesdolphin/why-python-is-awesome</div>
-      </section>
-      <section>
-
       </section>
     </div>
 
