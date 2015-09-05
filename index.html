@@ -50,13 +50,34 @@
 
   .side-by-side-code {
     width: 100%;
-    display: table;
+    display: inline-block;
     text-align: center;
+    vertical-align: top;
+    font-size: 55% !important;
+  }
+  .side-by-side-code>*{
+    display: inline-block;
   }
   .side-by-side-code pre {
-    display: table-cell;
-    max-width: 50%;
-    font-size: 0.4em
+    width: 99%;
+  }
+  .side-by-side-code.3-blocks {
+    width: 33%;
+  }
+  .side-by-side-code.2-blocks {
+    width: 50%;
+  }
+  .reveal .side-by-side-code div {
+    vertical-align: top;
+  }
+  code {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #eee;
+    display: inline-block;
+  }
+  pre code {
+    border-radius: 0;
   }
   </style>
 </head>
@@ -77,20 +98,15 @@
         </p>
       </section>
       <section>
-        <div class="content-warning">
-        The author wishes to advise that the following presentation may contain code that is badly formatted, missing comments or just plain wrong. Sorry.
-        </div>
-      </section>
-      <section>
         <section class="title-slide">
           <h2 class="orange">About Me</h2>
         </section>
         <section>
-          <h2>University<small>(A.K.A that place with free fast WiFi)</small></h2>
-          <ul class="fragment">
-            <li class="fragment">Bachelor of Information Technology and Science from the University of Queensland</li>
-            <li class="fragment">Wrote Java for fun(seriously - who does that)</li>
-            <li class="fragment">Also dabbled in Python, JavaScript, C and MatLab</li>
+          <h2>University</h2>
+          <ul>
+            <li>Bachelor of Information Technology and Science from the University of Queensland</li>
+            <li>Wrote Java for fun (seriously - who does that)</li>
+            <li>Also dabbled in Python, JavaScript, C and MatLab</li>
           </ul>
         </section>
         <section>
@@ -116,30 +132,31 @@
         </section>
         <section>
           <h3>Space</h3>
-          <div>How do I indent my code?</div>
-          <div>How should I space my code? 1 line or 2, blank lines inside functions.</div>
-          I hate compact code; but I also like not having to scroll through 1000 lines of mostly blank space to find what I need.
+          <ul>
+            <li>How do I indent my code?</li>
+            <li>How should I space my code? 1 line or 2, blank lines inside functions.</li>
+            <li>I hate compact code; but I also like not having to scroll through 1000 lines of mostly blank space to find what I need.</li>
+          </ul>
         </section>
         <section>
           <h3>Naming conventions</h3>
-          Why does python have <code>startswith</code>, <code>getLogger</code> and <code>bisect_left</code>? *shakes fist* STANDARDS.
-          Java's a little better - functions are <code>toString</code>; classes are <code>ArrayList</code> and constants are <code>MAX_VALUE</code>. Simple.
+          <div>Why does python have <code class="inline">startswith</code>, <code>getLogger</code> and <code lang="python">current_thread</code>?</div>
+          <div>Java's a little better - functions are <code lang="java">toString</code>; classes are <code lang="java">ArrayList</code> and constants are <code lang="java">MAX_VALUE</code>. Simple.</div>
         </section>
         <section>
           <h3>Naming conventions cont.</h3>
-          Should I <code>push</code> to a list, or <code>append</code> to a set; or is it the other way around. What if I don't know what type of object it is? <br />
-          Is it <code>do ... while true</code> or <code>while true ...</code> or <code>while true do ...</code><br />
-          Should I use <code>for</code>, <code>foreach</code> or the dreaded <code>for (var i = 0; i &lt; a.length; i++)</code> or the even worse <code>for (key in a) { if (a.hasOwnProperty(key)) {...}}</code>(thanks javascript).
+          <div>Should I <code>push</code> to a list, or <code>append</code> to a set?</div>
+          <div>What if I don't know what type of object it is?</div>
+          <div>Is it <code>do ... while true</code> or <code>while true ...</code> or <code>while true do ...</code></div>
+          Should I use <code>for</code>, <code>foreach</code> or worse.
         </section>
         <section>
           <h3>At least python only has 1 import statement</h3>
           It could be PHP, with <code>(require|include)(|_once)</code>.
         </section>
         <section>
-          <h3>And does namespaces , well..., well</h3>
-          Modules everywhere.<br />
-          Unlike Javascript(except maybe NodeJS and some of the newer CommonJS/RequireJS/AMD/*Insert latest and greatest module library here*) where everything is on the window object unless you use <code>var</code> <b>AND</b> wrap your whole code in <code>(function() {/* CODE HERE */})()</code>
-          And PHP; everything is also on the same namespace unless you explicitly use it.
+          <h3>And does have namespaces</h3>
+          Javascript kinda doesn't. PHP kinda does.
         </section>
       </section>
       <section>
@@ -152,19 +169,19 @@
           But what if you <b>COULD</b> do multiple things at once? That would make your program faster; but harder to understand.
         </section>
         <section>
-          <h3>Threadding</h3>
+          <h3>Threading</h3>
           <div>In most languages(Python's kinda an outlier with it's <abbr title="Global Interpreter Lock">GIL</abbr>) threads allow multiple lines of execution to run at once.</div>
           <div>The problem is that you have to be careful. What if you many threads are trying to insert into an array?</div>
         </section>
         <section>
           <h3>Multiple Processes</h3>
-          <div>Python's got multiprocessing. But sharing data becomes harder; and you have to manage sending/recieving data.</div>
+          <div>Python's got multiprocessing. But sharing data becomes harder; and you have to manage sending/receiving data.</div>
         </section>
         <section>
           <h3>Async - AsyncIO/Single Threaded Asynchronous</h3>
           <div>It's a single thread in a single process so no locking/unlocking or sharing problems.</div>
           <div>Plus the developer controls when the switches happen.</div>
-          <div>This only really is useful for IO bound operations - like a server, or a web crawler.</div>
+          <div>This only really is useful for IO-bound operations - like a server, or a web crawler.</div>
         </section>
       </section>
       <section>
@@ -200,7 +217,6 @@
               <li>Introduce packaging earlier</li>
             </ul>
           </div>
-          <div style="text-align: left">Local first ... or get Debian/Ubuntu to include venv in the <code>python3</code> package.</div>
         </section>
       </section>
       <section>
@@ -208,7 +224,121 @@
           <h2 class="mustard">Unit Testing</h2>
         </section>
         <section>
-          Unit testing in all languages is hard, but the syntactic sugar that is added can ease the pain, and make the output when your tests inevitably fail easier to read.
+          <h3>Writing tests - Boilerplate</h3>
+          <div class="side-by-side-code 3-blocks">
+            <div>
+              <h4>Java(Using JUnit)</h4>
+              <pre><code lang="java" data-trim>
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class TestSomething {
+
+  @Test
+  public void testFooReturnsBar() {
+    // ...
+  }
+}
+              </code></pre>
+            </div>
+            <div>
+              <h4>Python</h4>
+              <pre><code lang="python" data-trim>
+import unittest
+
+class TestSomething(unittest.TestCase):
+
+  def test_foo_returns_bar(self):
+    ## ...
+              </code></pre>
+            </div>
+            <div>
+              <h4>NodeJS(Using <a href="">Mocha</a> &amp; <a href="">Should</a>)</h4>
+              <pre><code lang="javascript" data-trim>
+require('mocha')
+require('should')
+
+describe('Something', function() {
+  describe('foo', function () {
+    it('should return bar', function () {
+      // ...
+    })
+  })
+})
+              </code></pre>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>Writing tests - Asserting stuff</h3>
+          <div class="side-by-side-code 3-blocks">
+            <div>
+              <h4>Java</h4>
+              <pre><code lang="java" data-trim>
+assertEquals(100/2, 50);
+assertNotSame(new Object(), new Object());
+assertNotNull("Some String");
+assertNull(null);
+              </code></pre>
+            </div>
+            <div>
+              <h4>Python</h4>
+              <pre><code lang="python" data-trim>
+self.assertEquals(100/2, 50)
+self.assertIsNot(object(), object())
+self.assertNotNone("Some String")
+self.assertNone(none)
+              </code></pre>
+            </div>
+            <div>
+              <h4>Javascript</h4>
+              <pre><code lang="javascript" data-trim>
+(100/2).should.equal(50)
+(new Object()).should.not.be(new Object())
+should("Some String").exist()
+should(null).not.exist()
+              </code></pre>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>Writing tests - Dynamic/Parameterised Tests</h3>
+          <div class="side-by-side-code 3-blocks">
+            <div>
+              <h4>Java</h4>
+              <div>
+                It's complicated.
+              </div>
+            </div>
+            <div>
+              <h4>Python</h4>
+              <pre><code lang="python" data-trim>
+def test_length_of_5_letter_strings(self):
+  for string in ["Hello", "World", "PyCon"]:
+    with self.subTest("Testing %r" % (string, )):
+      self.assertEqual(len(string), 5)
+              </code></pre>
+            </div>
+            <div>
+              <h4>Javascript</h4>
+              <pre><code lang="java-script" data-trim>
+describe("modulo of even numbers", function() {
+  itemsToTest = ["Hello", "World", "PyCon"]
+  itemsToTest.forEach(function(string) {
+    it('Testing "' + string + '"', function() {
+      string.should.have.lengthOf(5)
+    })
+  })
+})
+              </code></pre>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>Mocking</h3>
+          <div>
+            'Interesting' in most languages ... Python's is probably the easiest.
+          </div>
         </section>
       </section>
       <section>
@@ -325,6 +455,12 @@ class MyCoolClass():
           AND first class custom operations ... <code>__add__</code>, <code>__sub__</code>, <code>__mul__</code>, <code>__truediv__</code>, <code>__floordiv__</code>, the list goes on.<br />
           Doing that in Java is ... impossible.
         </section>
+      </section>
+      <section>
+        <h3>Thank you</h3>
+      </section>
+      <section>
+
       </section>
     </div>
 
